@@ -94,9 +94,36 @@ eleves = [
 print(list(filter(lambda e: e[0].startswith('m'),eleves)))
 
 #LIST Comprehension
+#Task :#Normalize d domains into standard Format
 domains = [
-  'www.google.com'
-  'openai.com'
-  'localhost'
+  'www.google.com',
+  'openai.com',
+  'localhost',
   'WWW.DATAWITHBARAA'
 ]
+
+cleaned = [#Data transformation
+          d.lower().replace('www.','')
+           #For loop
+          for d in domains
+          #Data Filtering
+          if '.' in d
+          ]
+print(cleaned)
+
+#Data Structure #TUPLES
+Tuple = (10,20,30,20)  #ORDERED like List
+print(Tuple)
+#Allows Duplicates
+print(Tuple[1])  #INDEXED
+Tuple[3] = 40  #IMMUTABLE # cant be changed
+print(Tuple) 
+
+# DATA STRUCTURE #SETS
+my_lst = {10,20,45,20}  #UNORDERED unlike the list
+# NO DUPLICATION Allowed
+my_lst.remove(20) #MUTABLE :#Can be changed
+print(my_lst)
+print(my_lst[1])  #Not INDEXED
+
+#METHODS FOR SETS
