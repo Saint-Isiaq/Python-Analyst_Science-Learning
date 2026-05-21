@@ -126,4 +126,131 @@ my_lst.remove(20) #MUTABLE :#Can be changed
 print(my_lst)
 print(my_lst[1])  #Not INDEXED
 
-#METHODS FOR SETS
+#METHODS FOR Working SETS
+a = {10,20,30,45}
+#Adding
+a.add(23)
+
+#Update #add groups of value
+a.update("hey")
+#case 2
+a.update({11,15}) #or Shortcut
+a |= {2,3}
+print(a)
+
+#Removing
+a = {10,20,30,45}
+a.remove(45)
+#case 2 that leads to error
+a.remove(15)  #removing value not in #SET #Instead 
+#discard
+a = {10,20,30,45}
+a.discard(15)
+print(a)
+
+#MATH METHODS FOR SETS
+a = {10,20,30,45}
+b = {43,10,25,30}
+#UNION
+print(a.union(b)) #Or #SHortcuts
+print(b|a)
+
+#intersection
+print(a.intersection(b)) #or #Shortcuts
+print(b&a)
+
+#difference
+print(a.difference(b)) #or #Shortcuts
+print(b-a)
+
+#symetric_difference
+print(a.symmetric_difference(b)) #or #shortcuts
+print(b^a)
+
+#RELATIONSHIP Method For SEts
+a = {10,20,30,45}
+b = {43,10,25,30}
+print(a.issubset(b))
+#Issuperset
+print(b.issuperset(a))
+#Isdisjoint
+print(a.isdisjoint(b))
+
+#DICTIONARY(Dict)
+my_dict = {'a':10,'b':20,'c':30,'d':20} #ORDERED
+#Allows DUPLICATES
+#Cant be Indexed  but 
+print(my_dict['c'])   #KEYS can be called
+my_dict['d'] = 35
+print(my_dict['d'])  #IS Mutable #can be changed
+
+#DICT METHODS
+user = {'id':2,'age':23,'city':'berlin'}
+#How to Access Dict
+print(user['age']) #or
+#case 2 #that leads to error #if not foundn in dict
+#print(user['nom'])
+#Case 3 #using a safer method
+#get()
+print(user.get('nom')) #or
+#case 3.5
+print(user.get('nom','key not found'))
+
+#HOW TO CHECK
+user = {'id':2,'age':23,'city':'berlin'}
+#In Operator
+print('age'in user) #or
+print('nom'not in user)
+
+#View OBJECTS inside Dict
+user = {'id':2,'age':23,'city':'berlin'}
+#KEYS
+print(user.keys())
+#Values
+print(user.values())
+#Items
+print(user.items())
+
+#Looping Dicts
+user = {'id':2,'age':23,'city':'berlin'}
+for u in user:
+  print(u,user[u]) #instead #Do
+#Case 2
+for key,value in user.items():
+  print(f'\n{key},{value}')
+
+#CHANGING DICT
+user = {'id':2,'age':23,'city':'berlin'}
+#Adding
+user['nom'] = 'mateo'
+print(user)
+#Case 2
+#Changing Value
+user['age'] = 24
+print(user)
+#Updates  #updating multiple values
+user.update({'age':30,'city':'paris'})
+print(user) 
+#Removing from DICT
+#POP()
+user = {'id':2,'age':23,'city':'berlin'}
+user.pop('age')
+print(user)  #OR 
+#Case 2 That returns an Error
+user = {'id':2,'age':23,'city':'berlin'}
+user.pop('nom') #So instead we pass a value if key not found
+#Case 2.5
+nom = user.pop('nom','key not found')
+print(user)
+print(f'removed item: {nom}')
+#POPITEM()  #removes last item added to dict
+user = {'id':2,'age':23,'city':'berlin','nom':'mario'}
+user.popitem()
+print(user)
+
+#CREATION OF NEW DICT
+user = {'id':2,'nom':'mario','age':23,'city':'berlin'}
+#instead of the usual
+#FromKeys()
+user = dict.fromkeys(['id','nom','role','city'],None)
+print(user)
