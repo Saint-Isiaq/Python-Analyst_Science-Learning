@@ -254,3 +254,16 @@ user = {'id':2,'nom':'mario','age':23,'city':'berlin'}
 #FromKeys()
 user = dict.fromkeys(['id','nom','role','city'],None)
 print(user)
+
+#DICT challenge
+user = {'id':2,'nom':'johna','age':23,'city':'berlin'}
+#Create new dict
+new_dict = [
+  #DATA transformation
+u
+#for loop
+for u in user.items()
+#data filtering
+if u == str
+ ]
+print(new_dict)
