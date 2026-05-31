@@ -256,14 +256,15 @@ user = dict.fromkeys(['id','nom','role','city'],None)
 print(user)
 
 #DICT challenge
-user = {'id':2,'nom':'johna','age':23,'city':'berlin'}
+user = {'id':2,'nom':'Johna','age':23,'city':'Berlin'}
 #Create new dict
-new_dict = [
-  #DATA transformation
-u
+new_dict = {
+  #DATA expression/transformation
+k.upper(): v.lower()
 #for loop
-for u in user.items()
+for k, v in user.items()
 #data filtering
-if u == str
- ]
-print(new_dict)
+if isinstance(v,str)
+}
+
+print(f'new dict: {new_dict}') 

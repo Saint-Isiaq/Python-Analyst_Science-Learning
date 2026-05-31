@@ -13,6 +13,7 @@ def mult_two(x):
 #fn(📞)
 mult_two(6)
 
+#UDF #Intermediate
 #case 1.1
 #buillding up a fn()
 name = ' MariA '
@@ -67,6 +68,7 @@ clean_txt(' MaRiA ')
 clean_txt(' SMAT HY')
 clean_txt(' Fo w A VE s')
 
+#UDF #Advanced
 #Building Full Clean Name
 #Positional Arguments
 def clean_name(nom,prenom,country):
@@ -104,3 +106,42 @@ clean_name('SMiTHy ',prenom = ' Fo w A VE s',country = 'FR')
 
 #Default Parameters 
 #Rules #parameters with a default fllws one without a default
+def clean_name(nom,prenom,country = 'unknown'):
+  first = nom.strip().lower().replace(" ","")
+  last = prenom.strip().lower().replace(" ","")
+  name = first + " " + last
+  print(f'{name} from {country}')
+#Fn(📞)
+clean_name(' MaRiA ',' SMAT HY')  #omitting country argument here
+clean_name(' MaRiA ',' Fo w A VE s', 'EG')
+
+#  *ARGS and **KWARGS
+#task  #calculating the total of values
+def total (a=0,b=0,c=0,d=0):
+  print(a+b+c+d) #adding more from three paramtrs
+
+total(2,3,1,4)  #totally stressful instead
+
+#*ARGS
+def total(*args):
+  print(sum(args))
+#fn(📞)
+total(2,3,4,5,6,7,8)  #Now adding more arguments without stressing
+
+#Case 2  #**KWARGS
+#A mix of different value type 
+def user_profile(**kwargs):
+  print(kwargs)
+#fn(📞)
+user_profile( nom = 'christiano',
+             prenom ='ronaldo',
+             age = 40,
+             height = '185cm',
+             pays ='portugal')
+print(f'\n')
+user_profile( nom = 'ademola',
+             prenom ='lookman',
+             age = 25,
+             height = '181cm',
+             pays ='nigeria',
+             club = 'Ac Milan')
