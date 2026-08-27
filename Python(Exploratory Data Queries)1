@@ -1,0 +1,213 @@
+Basics OF EXPLORATORY Python Analysis
+
+==============================================
+##Loadiing And Importing Pickled File
+##Exercise B1.1
+==============================================
+
+# Importing pickled package
+import pickle
+
+# Opening pickle file and loading data: d
+with open('data.pkl', 'rb') as file:
+    d = pickle.load(file)
+
+# Print d
+print(d)
+
+# Print datatype of d
+print(type(d))
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+==============================================
+##Loading And Importing Spreadsheet
+##Exercise B2.1
+==============================================
+
+# Import pandas
+import pandas as pd
+
+# Assigning spreadsheet filename: file
+file = 'filepath.xlsx'
+
+# Loading spreadsheet: xls
+xls = pd.ExcelFile(file)
+
+# Printing sheet names
+print(xls.sheet_names)
+
+==============================================
+##Loading Individual Sheetname From A Spreadsheet
+##Exercise B3.1
+==============================================
+
+# Loading a sheet into a DataFrame by name: df1
+df1 = xls.parse('sheetname')
+
+# Printing the head of the DataFrame df1
+print(df1.head())
+
+# Loading a sheet into a DataFrame by index: df2
+df2 = xls.parse(0)
+
+# Printing the head of the DataFrame df2
+print(df2.head())
+
+==============================================
+##Parse:  Loading In Between Spreadsheet
+##Exercise B4.1
+==============================================
+
+# Parsing the first sheet and renaming the columns: df1
+
+df1 = xls.parse(0, skiprows=[0], names=['Country','AAM due to War (2002)'])
+
+# Printing the head of the DataFrame df1
+print(df1.head())
+
+# Parsing the first column of the second sheet and rename the column: df2
+df2 = xls.parse(1, usecols=[0], skiprows=1, names=['Country'])
+
+# Printing the head of the DataFrame df2
+print(df2.head())
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+==============================================
+##Loading And Importing: SAS AND STATA File
+##Exercise B5.1
+==============================================
+
+##Importing Needed Library
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Import sas7bdat package
+from sas7bdat import SAS7BDAT
+
+# Saving file to a DataFrame: df_sas
+with SAS7BDAT('filepath.sas7bdat') as file:
+   df_sas = file.to_data_frame()
+
+# Printing head of DataFrame
+print(df_sas.head())
+
+# Ploting histogram of DataFrame features (pandas and pyplot already imported)
+pd.DataFrame.hist(df_sas[['P']])
+plt.ylabel('count')
+plt.show()
+
+
+==============================================
+##Loading And Importing: SAS AND STATA File  in DF
+##Exercise B6.1
+==============================================
+import pandas as pd
+df = pd.read_stata('filepath.dta')
+
+
+# Load Stata file into a pandas DataFrame: df
+df = pd.read_stata('disarea.dta')
+
+# Print the head of the DataFrame df
+print(df.head())
+
+# Plot histogram of one column of the DataFrame
+pd.DataFrame.hist(df[['disa10']])
+plt.xlabel('Extent of disease')
+plt.ylabel('Number of countries')
+plt.show()
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+==============================================
+##Loading And Importing: HDF5 File
+##Exercise B7.1
+==============================================
+##Importing Libraries
+import pandas as pd
+import h5py
+import matplotlib.pyplot as plt
+
+# Assigning filename: file
+file = 'filepath.hdf5' 
+
+# Loading file: data
+data = h5py.File(file, 'r')
+
+# Printing the datatype of the loaded file
+print(type(data))
+
+# Printing the keys of the file
+for key in data.keys():
+    print(key)
+
+==============================================
+##Loading And Importing: HDF5 File
+##Exercise B8.1
+==============================================
+
+# Get the HDF5 group: group
+group = data['strain']
+
+# Checking out keys of group
+for key in group.keys():
+    print(key)
+
+# Setting variable equal to time series data: strain
+strain = np.array(data['strain']['Strain'])
+
+# Setting number of time points to sample: num_samples
+num_samples = 10000
+
+# Setting time vector
+time = np.arange(0, 1, 1/num_samples)
+
+# Plotting data
+plt.plot(time, strain[:num_samples])
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+==============================================
+##Loading And Importing: MATLAB File
+##Exercise B9.1
+==============================================
+
+# Importing package
+import scipy.io
+import matplotlib.pyplot as plt
+import numpy as np
+______________________________________________
+
+# Loading MATLAB file: mat
+mat = scipy.io.loadmat('albeck_gene_expression.mat')
+
+# Printing the datatype type of mat
+print(type(mat))
+plt.xlabel('GPS Time (s)')
+plt.ylabel('strain')
+plt.show()
+
+
+==============================================
+##Loading And Importing: MATLAB File
+##Exercise B9.1
+==============================================
+
+# Printing the keys of the MATLAB dictionary
+print(mat.keys())
+
+# Printing the type of the value corresponding to the key 'CYratioCyt'
+print(type(mat['CYratioCyt'][:9]))
+
+# Printing the shape of the value corresponding to the key 'CYratioCyt'
+print(np.shape(mat['CYratioCyt']))
+
+# Subset the array and plot it
+data = mat['CYratioCyt'][25, 5:]
+fig = plt.figure()
+plt.plot(data)
+plt.xlabel('time (min.)')
+plt.ylabel('normalized fluorescence (measure of expression)')
+plt.show()
